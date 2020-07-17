@@ -1,0 +1,56 @@
+*** Anaconda install (or miniconda) ***
+
+# nothing as root, do everything as (user) user
+# Anaconda install deps, as mentioned on https://docs.anaconda.com/anaconda/install/linux/
+
+user $ bash Anaconda3-2020.02-Linux-x86_64.sh -u -p /opt/anaconda3
+
+installation finished.
+Do you wish the installer to initialize Anaconda3
+by running conda init? [yes|no]
+[no] >>> yes
+no change     /opt/anaconda3/condabin/conda
+no change     /opt/anaconda3/bin/conda
+no change     /opt/anaconda3/bin/conda-env
+no change     /opt/anaconda3/bin/activate
+no change     /opt/anaconda3/bin/deactivate
+no change     /opt/anaconda3/etc/profile.d/conda.sh
+no change     /opt/anaconda3/etc/fish/conf.d/conda.fish
+no change     /opt/anaconda3/shell/condabin/Conda.psm1
+no change     /opt/anaconda3/shell/condabin/conda-hook.ps1
+no change     /opt/anaconda3/lib/python3.7/site-packages/xontrib/conda.xsh
+no change     /opt/anaconda3/etc/profile.d/conda.csh
+modified      /home/user/.bashrc
+
+==> For changes to take effect, close and re-open your current shell. <==
+
+If you'd prefer that conda's base environment not be activated on startup, 
+   set the auto_activate_base parameter to false: 
+
+conda config --set auto_activate_base false
+
+Thank you for installing Anaconda3!
+
+user $ conda config --set auto_activate_base false
+
+*** KNIME and Python integration ***
+
+user $ conda env create -f ./py36_knime.yml
+user $ conda env create -f ./py27_knime.yml
+
+user $ cat <<. > /home/user/py36.sh
+#! /bin/bash
+export PATH="/opt/anaconda3/bin:$PATH"
+conda activate py36_knime
+python "$@" 1>&1 2>&2
+.
+
+user $ cat <<. > /home/user/py27.sh
+#! /bin/bash
+export PATH="/opt/anaconda3/bin:$PATH"
+conda activate py27_knime
+python "$@" 1>&1 2>&2
+.
+
+user $ chmod 755 ~/py38.sh
+user $ chmod 755 ~/py27.sh
