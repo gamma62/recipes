@@ -1,0 +1,68 @@
+" .vimrc
+
+set hls         " hlsearch; temporary switch off ... :nohl
+" set is        " set incsearch, set nois
+"               " set nowrapscan
+set nonu        " line numbering ... :set nu
+syntax off
+set wildmode=list:longest   " wildchar selection in menus
+set regexpengine=2      " 0=auto, 1=old, 2=NFA
+"--- help: Ctrl-] jump to topic, mhist: Ctrl-O (older), Ctrl-I (back), ``
+" J -- join lines (ex mode)
+" :ls  the buffer list,   :b <TAB>  ?buffer selection?
+
+"--- move hjkl, w b e (Ctrl-left/right), W B E, 0 ^ $, gg <n>G G, status: Ctrl-G
+" matchpairs: by %,   [{( )}] by default, add more: < and >
+set mps+=<:>
+" scroll: PageUp or Ctrl-B, PageDown or Ctrl-F, half screen: Ctrl-U, Ctrl-D 
+" foculine scroll: to top: zt, center: zz, to bottom: zb
+"--- search: / ?   words: * #   partial: g* g#   regex: \v
+" find x char: fx
+
+"--- small
+" {op}{count}{motion}: operators like, d delete, c change, d$, d^, dd, cc, c$
+" delete: x / dl, X / dh, D / d$, change: C / c$, S / cc, s / cl
+" repeat the change: .   for example: f< df>   and   f< .   and so on
+" yank: d.. x.. y.. (y^ y$ yy Y) put: p -- before cursor: P 
+" primary ("*): "*yy and "*p   -- clipboard ("+): "+yy and "+p -- in visual mode: overwrite
+" replace (in)line: R, one char: r, backspace: undo
+" change case of char or visual: ~
+" start edit: i, a, o/O, I, A
+" visual: v (flow), Shift-v (line), Ctrl-v (block) -- o / O other end
+
+"---
+set autoindent   " :set ai ... the same amount of space
+" :filetype on
+"---
+" :e :w :next[!] :prev[!] :wnext :wprev Ctrl-^ :hide
+" marks: `" position left, `. last change, mx, `x file, mX, `X global, :marks 
+" :saveas <newfile>   :file <do not write>
+
+"--- Control-W
+" ^W s, :sp [file], :new, ^W v, :vs [file], :vnew, ^W q, :close, :only
+" focus: ^W w, ^W hjkl, ^W arrows
+" resize: ^W= ^W+/-[N] :res +/-[N] z[N] :vertical res [N] ^W </> 
+" zoom height: Ctrl-W _
+
+" window move: Ctrl-W HJKL
+" vim -o ablakok egymas alatt ... vim -O ablakok egymas mellett
+" if already opened... :all ... :vertical all
+" vimdiff file-orig file-changed
+" :tabe filename, :tab split, Ctrl-PgDown, gt, :tab help gt
+
+" substitute: range: % file, .,$ or 1,$ or 12,12   flags: g global, c confirm
+" :?searchBackPattern?,/searchFwdPattern/s#from#to#g
+" :s#\v...#...#g
+" :%s#\v...#...#gc
+" mark range top/bottom with mt and mb, and then   :'t,'bs/from/to/gc
+" see also :global
+" empty pattern --> repeat last search;  :map / /\v
+"
+
+"--- statusline (stl)
+set ls=1   " laststatus (default 1, never 0, always 2)
+set statusline=\[%n]\ %f%m%r\ %L\ lines\ %5l,%-5c\ \[0x%02B]\ %P
+
+"--- wrap is on by default, :set wrap :set nowrap
+"set ss=5   " sidescroll
+"set listchars+=precedes:<,extends:>
