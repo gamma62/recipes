@@ -6,7 +6,7 @@ set hls         " hlsearch; temporary switch off ... :nohl
 set nonu        " line numbering ... :set nu
 syntax off
 set wildmode=list:longest   " wildchar selection in menus
-set regexpengine=2      " 0=auto, 1=old, 2=NFA
+set re=2   " regexpengine=2 ... 0=auto, 1=old, 2=NFA
 "--- help: Ctrl-] jump to topic, mhist: Ctrl-O (older), Ctrl-I (back), ``
 " J -- join lines (ex mode)
 " :ls  the buffer list,   :b <TAB>  ?buffer selection?
@@ -31,7 +31,7 @@ set mps+=<:>
 " visual: v (flow), Shift-v (line), Ctrl-v (block) -- o / O other end
 
 "---
-set autoindent   " :set ai ... the same amount of space
+set ai   :autoindent ... the same amount of space
 " :filetype on
 "---
 " :e :w :next[!] :prev[!] :wnext :wprev Ctrl-^ :hide
@@ -39,25 +39,28 @@ set autoindent   " :set ai ... the same amount of space
 " :saveas <newfile>   :file <do not write>
 
 "--- Control-W
-" ^W s, :sp [file], :new, ^W v, :vs [file], :vnew, ^W q, :close, :only
-" focus: ^W w, ^W hjkl, ^W arrows
-" resize: ^W= ^W+/-[N] :res +/-[N] z[N] :vertical res [N] ^W </> 
-" zoom height: Ctrl-W _
+" ^W s, :sp [file], :new ... split/open
+" ^W v, :vs [file], :vnew ... split/open vertical
+" change focus: ^W w (wrap around),    ^W h j k l,   ^W arrows,  p,  n
+" move current: ^W H J K L    (far left, far top, far bottom, far right)
+" resize current: ^W < > ... height  + - ... width   = ... equal 
+" and by command,    :res[ize] +/-[N]   :vert[ical] res[ize] +/-[N]    :vert {cmd}
+" ^W q, :close, :only
 
-" window move: Ctrl-W HJKL
 " vim -o ablakok egymas alatt ... vim -O ablakok egymas mellett
 " if already opened... :all ... :vertical all
 " vimdiff file-orig file-changed
 " :tabe filename, :tab split, Ctrl-PgDown, gt, :tab help gt
 
-" substitute: range: % file, .,$ or 1,$ or 12,12   flags: g global, c confirm
-" :?searchBackPattern?,/searchFwdPattern/s#from#to#g
-" :s#\v...#...#g
-" :%s#\v...#...#gc
+" substitute:
+"""" range: % file,   or 1,$ or 12,12 etc  .,$ is default
+" :?searchBackPattern?,/searchFwdPattern/s#from#to#gc
+" :s#\v...#...#g        global, in the line
+" :%s#\v...#...#gc      global, with confirmation
+""" without \v (very magic) and in vi ...... the old syntax is alive: \( and \) and \| ...
 " mark range top/bottom with mt and mb, and then   :'t,'bs/from/to/gc
 " see also :global
 " empty pattern --> repeat last search;  :map / /\v
-"
 
 "--- statusline (stl)
 set ls=1   " laststatus (default 1, never 0, always 2)
@@ -66,3 +69,4 @@ set statusline=\[%n]\ %f%m%r\ %L\ lines\ %5l,%-5c\ \[0x%02B]\ %P
 "--- wrap is on by default, :set wrap :set nowrap
 "set ss=5   " sidescroll
 "set listchars+=precedes:<,extends:>
+
